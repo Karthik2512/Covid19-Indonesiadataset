@@ -2,20 +2,38 @@
 version: 2
 
 models:
-    - name: my_first_dbt_model
-      description: "A starter dbt model"
+    - name: location_parameters.sql
+      description: "Parameters based on location iso code"
       columns:
-          - name: id
+          - name: location_iso
             description: "The primary key for this table"
             tests:
                 - unique
                 - not_null
+                - primary_key
+          - name: location
+            description: "The location to which the iso code belongs to"
+          - name: island
+            description: "The island the location is present on"
+          - name: latitude
+            description: "The latitude for the given location"
+          - name: longitude
+            description: "The longitude for the given location"
 
-    - name: my_second_dbt_model
-      description: "A starter dbt model"
+    - name: location_statistics.sql
+      description: "Statistics for a given location based on the iso code"
       columns:
-          - name: id
+          - name: location_iso_code
             description: "The primary key for this table"
             tests:
                 - unique
                 - not_null
+                - primary_key
+          - name: population
+            description: "Total population for the specified location"
+          - name: population_density
+            description: "Population density for the specific location"
+          - name: total_urban_villages
+            description: "Self explanatory"
+          - name: total_rural_villages
+            description: "Self explanatory"
